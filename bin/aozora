@@ -6,8 +6,8 @@ sys.path.append(os.getcwd())
 
 
 def main():
-    import aozoracli.main
-    return aozoracli.main.main()
+    import aozoracli.cli
+    return aozoracli.cli.cli()
 
 if __name__ == '__main__':
     sys.exit(main())
