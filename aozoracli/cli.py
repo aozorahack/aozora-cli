@@ -6,12 +6,16 @@ def cli(ctx):
     if ctx.invoked_subcommand is None:
         print(ctx.get_help())
     else:
-        print('gonna invoke %s' % ctx.invoked_subcommand)
+        ctx.invoked_subcommand
 
 
 @cli.command(help='list books')
-@click.argument('target', required=False)
-def books(target):
+@click.option('--id', required=False, type=int)
+@click.option('--name', required=False)
+def books(id, name):
     import aozoracli.books
-    aozoracli.books.main()
+    aozoracli.books.main(
+            id=id,
+            name=name,
+    )
 
