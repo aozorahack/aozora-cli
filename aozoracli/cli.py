@@ -73,13 +73,13 @@ def _to_txt(data):
     if isinstance(data, list):
         output = ""
         for d in data:
-            output += _format_print_txt(d)
+            output += _to_txt(d)
         return output
     elif isinstance(data, dict):
         sorted_keys = sorted(data.keys())
         sorted_values = []
         for key in sorted_keys:
-            val = _format_print_txt(data[key])
+            val = _to_txt(data[key])
             sorted_values.append(val)
         return " ".join(sorted_values)
     else:
