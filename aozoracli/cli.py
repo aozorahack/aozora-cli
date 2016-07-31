@@ -11,11 +11,11 @@ def cli(ctx):
 
 @cli.command(help='list books')
 @click.option('--id', required=False, type=int)
-@click.option('--name', required=False)
-def books(id, name):
+@click.option('--title', required=False)
+def books(id, title):
     import aozoracli.books
-    aozoracli.books.main(
-            id=id,
-            name=name,
-    )
+    aozoracli.books.main({
+            'id': id,
+            'title': title,
+    })
 
