@@ -7,5 +7,8 @@ AOZORAPI_URL = "http://{}/api/v0.1".format(AOZORAPI_HOST)
 def main():
      print("Start aozora command line tool")
 
-def get_books(payload=None):
-    return requests.get(AOZORAPI_URL + "/books", params=payload)
+def get_books(id=None, payload=None):
+    url = AOZORAPI_URL + "/books"
+    if id != None:
+        url += "/{}".format(id)
+    return requests.get(url, params=payload)
