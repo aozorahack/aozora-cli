@@ -5,7 +5,8 @@ PATH_KEY = 'id'
 PAYLOAD_KEYS = ['author', 'title']
 
 def main(options):
-    options, id, payload = _parse_options(options)
+    from .util import _filter, _parse_options
+    options, id, payload = _parse_options(options, PATH_KEY, PAYLOAD_KEYS)
     books = aozoracli.client.get_books(id, payload).json()
 
     if books == None:
@@ -23,21 +24,3 @@ def main(options):
 
     print(books)
     return True
-
-def _filter(books, key, value):
-    return [b for b in books if b[key] == value]
-
-def _parse_options(options):
-    if options == None:
-        return
-
-    path = options.pop(PATH_KEY)
-
-    payload = {}
-    for key in PAYLOAD_KEYS:
-        if options[key] == None:
-            continue
-        payload[key] = options.pop(key)
-
-    return (options, path, payload)
-

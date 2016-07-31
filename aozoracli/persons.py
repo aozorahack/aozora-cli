@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 import aozoracli.client
-
+PATH_KEY = 'id'
 PAYLOAD_KEYS = ['name']
 
 def main(options):
-    options, payload = _parse_options(options)
-    persons = aozoracli.client.get_persons(payload).json()
+    from .util import _filter, _parse_options
+    options, id, payload = _parse_options(options, PATH_KEY, PAYLOAD_KEYS)
+    persons = aozoracli.client.get_persons(id, payload).json()
 
     if persons == None:
         print("Could not get aozora persons data")
@@ -23,17 +24,4 @@ def main(options):
 
     print(persons)
     return True
-
-def _filter(persons, key, value):
-    print(key, value)
-    return [b for b in persons if b[key] == value]
-
-def _parse_options(options):
-    payload = {}
-    for key in PAYLOAD_KEYS:
-        if options[key] == None:
-            continue
-        payload[key] = options.pop(key)
-
-    return (options, payload)
 
