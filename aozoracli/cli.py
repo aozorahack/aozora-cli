@@ -31,3 +31,13 @@ def persons(id, name):
             'name': name,
     })
 
+@cli.command(help='show content')
+@click.option('--id', required=True, type=int)
+@click.option('--format', required=False, default='txt', type=click.Choice(['txt', 'html']))
+def content(id, format):
+    import aozoracli.content
+    res = aozoracli.content.main({
+            'id': id,
+            'format': format,
+    })
+
