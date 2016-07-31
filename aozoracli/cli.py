@@ -49,6 +49,10 @@ def content(id, format, output):
     _print(res, output)
 
 def _print(res, output_format):
+
+    if res == False:
+        return
+
     if output_format == 'json':
         output = json.dumps(res, ensure_ascii=False)
     elif  output_format in {'txt', 'html'}:
