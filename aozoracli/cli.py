@@ -14,7 +14,7 @@ def cli(ctx):
 @click.option('--id', required=False, type=int)
 @click.option('--title', required=False)
 @click.option('--author', required=False)
-@click.option('--output', required=False, default='json', type=click.Choice(['json']))
+@click.option('--output', required=False, default='json', type=click.Choice(['json', 'txt']))
 def books(id, title, author, output):
     import aozoracli.books
     res = aozoracli.books.main({
@@ -27,7 +27,7 @@ def books(id, title, author, output):
 @cli.command(help='list persons')
 @click.option('--id', required=False, type=int)
 @click.option('--name', required=False)
-@click.option('--output', required=False, default='json', type=click.Choice(['json']))
+@click.option('--output', required=False, default='json', type=click.Choice(['json', 'txt']))
 def persons(id, name, output):
     import aozoracli.persons
     res = aozoracli.persons.main({
@@ -46,18 +46,42 @@ def content(id, format, output):
             'id': id,
             'format': format,
     })
-    _print(res, output)
+    # contentは、Jsonレスポンスではないので、とりあえずそのまま出力
+    print(res)
 
 def _print(res, output_format):
-
     if res == False:
         return
 
     if output_format == 'json':
         output = json.dumps(res, ensure_ascii=False)
-    elif  output_format in {'txt', 'html'}:
-        output = res
+    elif  output_format == 'txt':
+        output = _format_print_txt(res)
     else:
         output = res
     print(output)
+
+def _format_print_txt(data):
+    if isinstance(data, list):
+        return "\n".join([_to_txt(d) for d in data])
+    elif isinstance(data, dict):
+        return _format_print_txt(d)
+    else:
+        return str(data)
+
+def _to_txt(data):
+    if isinstance(data, list):
+        output = ""
+        for d in data:
+            output += _format_print_txt(d)
+        return output
+    elif isinstance(data, dict):
+        sorted_keys = sorted(data.keys())
+        sorted_values = []
+        for key in sorted_keys:
+            val = _format_print_txt(data[key])
+            sorted_values.append(val)
+        return " ".join(sorted_values)
+    else:
+        return str(data)
 
