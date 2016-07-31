@@ -11,5 +11,5 @@ def main(options):
     options, id, payload = _parse_options(options, PATH_KEY, PAYLOAD_KEYS)
     res = aozoracli.client.get_content(id, payload)
 
-    print(res.text)
+    return res.text
 

@@ -22,5 +22,4 @@ def main(options):
         print("Not found books")
         return False
 
-    print(books)
-    return True
+    return books

@@ -22,6 +22,5 @@ def main(options):
         print("Not found persons")
         return False
 
-    print(persons)
-    return True
+    return persons
 
