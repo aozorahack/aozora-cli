@@ -11,7 +11,7 @@ def _parse_options(options, path_key, payload_keys):
 
     payload = {}
     for key in payload_keys:
-        if options[key] == None:
+        if not key in options or options[key] == None:
             continue
         payload[key] = options.pop(key)
 
