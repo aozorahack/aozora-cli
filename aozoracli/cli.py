@@ -1,5 +1,9 @@
 import json
 import click
+import jmespath
+
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE,SIG_DFL)
 
 @click.group(invoke_without_command=True)
 @click.pass_context
@@ -15,25 +19,33 @@ def cli(ctx):
 @click.option('--title', required=False)
 @click.option('--author', required=False)
 @click.option('--output', required=False, default='json', type=click.Choice(['json', 'txt']))
-def books(id, title, author, output):
+@click.option('--query', required=False, type=str)
+def books(id, title, author, output, query):
     import aozoracli.books
     res = aozoracli.books.main({
             'id': id,
             'title': title,
             'author': author,
     })
+    if query != None:
+        res = jmespath.search(query, res)
+
     _print(res, output)
 
 @cli.command(help='list persons')
 @click.option('--id', required=False, type=int)
 @click.option('--name', required=False)
 @click.option('--output', required=False, default='json', type=click.Choice(['json', 'txt']))
-def persons(id, name, output):
+@click.option('--query', required=False, type=str)
+def persons(id, name, output, query):
     import aozoracli.persons
     res = aozoracli.persons.main({
             'id': id,
             'name': name,
     })
+    if query != None:
+        res = jmespath.search(query, res)
+
     _print(res, output)
 
 @cli.command(help='show content')
