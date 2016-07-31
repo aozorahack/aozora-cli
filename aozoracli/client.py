@@ -8,7 +8,16 @@ def main():
      print("Start aozora command line tool")
 
 def get_books(id=None, payload=None):
-    url = AOZORAPI_URL + "/books"
+    url = _create_api_url("books", id)
+    return requests.get(url, params=payload)
+
+def get_persons(id=None, payload=None):
+    url = _create_api_url("persons", id)
+    return requests.get(url, params=payload)
+
+def _create_api_url(path, id=None):
+    url = AOZORAPI_URL + "/" + path
     if id != None:
         url += "/{}".format(id)
-    return requests.get(url, params=payload)
+    return url
+

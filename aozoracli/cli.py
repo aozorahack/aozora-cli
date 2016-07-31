@@ -21,3 +21,13 @@ def books(id, title, author):
             'author': author,
     })
 
+@cli.command(help='list persons')
+@click.option('--id', required=False, type=int)
+@click.option('--name', required=False)
+def persons(id, name):
+    import aozoracli.persons
+    aozoracli.persons.main({
+            'id': id,
+            'name': name,
+    })
+
