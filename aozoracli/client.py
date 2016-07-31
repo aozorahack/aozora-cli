@@ -12,3 +12,6 @@ def get_books(id=None, payload=None):
     if id != None:
         url += "/{}".format(id)
     return requests.get(url, params=payload)
+
+def get_persons(payload=None):
+    return requests.get(AOZORAPI_URL + "/persons", params=payload)
