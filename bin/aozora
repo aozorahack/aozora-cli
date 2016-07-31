@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+
+import sys
+import aozoracli
+
+def main():
+    return aozoracli.cli()
+
+if __name__ == '__main__':
+    sys.exit(main())
