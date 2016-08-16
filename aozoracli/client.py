@@ -1,7 +1,7 @@
 import requests
 import os
 
-AOZORAPI_HOST = os.environ.get("AOZORAPI_HOST", "153.127.202.91")
+AOZORAPI_HOST = os.environ.get("AOZORAPI_HOST", "www.aozorahack.net")
 AOZORAPI_URL = "http://{}/api/v0.1".format(AOZORAPI_HOST)
 
 def main():
