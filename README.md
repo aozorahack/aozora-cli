@@ -14,7 +14,14 @@ Dependencies
 
 ### インストール
 
+pip
+
+1. `pip install aozora-cli`
+
+### Development
+
 1. `git clone https://github.com/aozorahack/aozora-cli`
+1. `cd aozora-cli`
 1. `export PYTHONPATH=.`
 
 ### 環境変数
