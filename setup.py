@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
+import os
+
+import aozoracli.version
 
 setup(
     name='aozora-cli',
-    version='0.1',
+    version=aozoracli.version.__version__,
     description='Aozora Bunko Command Line Tool',
     author='Yasuhiro Kiyota',
     author_email='yasuhiroki.duck@gmail.com',
@@ -13,4 +16,5 @@ setup(
     scripts=['bin/aozora'],
     packages=['aozoracli'],
     install_requires=['requests', 'click', 'jmespath'],
+    license="MIT",
 )

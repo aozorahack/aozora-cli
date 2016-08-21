@@ -14,7 +14,12 @@ def cli(ctx):
         ctx.invoked_subcommand
 
 
-@cli.command(help='list books')
+@cli.command(help="show version")
+def version():
+    import aozoracli.version
+    print(aozoracli.version.__version__)
+
+@cli.command(help='list books ')
 @click.option('--id', required=False, type=int)
 @click.option('--title', required=False)
 @click.option('--author', required=False)
