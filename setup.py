@@ -4,11 +4,9 @@
 from setuptools import setup, find_packages
 import os
 
-import aozoracli.version
-
 setup(
     name='aozora-cli',
-    version=aozoracli.version.__version__,
+    version='0.0.2',
     description='Aozora Bunko Command Line Tool',
     author='Yasuhiro Kiyota',
     author_email='yasuhiroki.duck@gmail.com',
