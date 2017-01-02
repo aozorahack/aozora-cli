@@ -1,4 +1,6 @@
-import json
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import click
 import jmespath
 
@@ -64,41 +66,26 @@ def content(id, format, output):
             'format': format,
     })
     # contentは、Jsonレスポンスではないので、とりあえずそのまま出力
-    print(res)
+    _print_utf8(res.encode("UTF-8"))
 
 def _print(res, output_format):
     if res == False:
         return
 
     if output_format == 'json':
-        output = json.dumps(res, ensure_ascii=False)
+        import json
+        output = json.dumps(res, ensure_ascii=False).encode("UTF-8")
     elif  output_format == 'txt':
-        output = _format_print_txt(res)
+        import aozoracli.output.txt
+        output = aozoracli.output.txt.dump(res)
     else:
         output = res
-    print(output)
+    _print_utf8(output)
 
-def _format_print_txt(data):
-    if isinstance(data, list):
-        return "\n".join([_to_txt(d) for d in data])
-    elif isinstance(data, dict):
-        return _format_print_txt(d)
-    else:
-        return str(data)
-
-def _to_txt(data):
-    if isinstance(data, list):
-        output = ""
-        for d in data:
-            output += _to_txt(d)
-        return output
-    elif isinstance(data, dict):
-        sorted_keys = sorted(data.keys())
-        sorted_values = []
-        for key in sorted_keys:
-            val = _to_txt(data[key])
-            sorted_values.append(val)
-        return " ".join(sorted_values)
-    else:
-        return str(data)
+def _print_utf8(output):
+    try:
+        unicode
+        print(output)
+    except:
+        print(output.decode("UTF-8"))
 

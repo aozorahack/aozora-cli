@@ -12,7 +12,7 @@ setup(
     author_email='yasuhiroki.duck@gmail.com',
     url='https://github.com/aozorahack/aozora-cli',
     scripts=['bin/aozora'],
-    packages=['aozoracli'],
+    packages=['aozoracli', 'aozoracli/output'],
     install_requires=['requests', 'click', 'jmespath'],
     license="MIT",
 )
