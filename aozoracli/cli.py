@@ -66,7 +66,7 @@ def content(id, format, output):
             'format': format,
     })
     # contentは、Jsonレスポンスではないので、とりあえずそのまま出力
-    print(res.encode("UTF-8"))
+    _print_utf8(res.encode("UTF-8"))
 
 def _print(res, output_format):
     if res == False:
@@ -80,5 +80,12 @@ def _print(res, output_format):
         output = aozoracli.output.txt.dump(res)
     else:
         output = res
-    print(output)
+    _print_utf8(output)
+
+def _print_utf8(output):
+    try:
+        unicode
+        print(output)
+    except:
+        print(output.decode("UTF-8"))
 
