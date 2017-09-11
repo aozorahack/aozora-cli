@@ -1,33 +1,36 @@
-# CLI tool for Aozora Bunko API
+# 青空文庫コマンドラインツール
 
-[(Japanese / 日本語)](./README.ja.md)
+## 環境
 
-## Requirements
+Python 3.x
 
-- Python 3.x
+Dependencies
+
 - [requests](https://github.com/kennethreitz/requests)
 - [click](https://github.com/pallets/click)
 - [jmespath](https://github.com/jmespath/jmespath.py)
 
-## Getting Started
+## 使い方
 
-```
-$ pip install aozora-cli
-```
+### インストール
 
-### For Development
+pip
+
+1. `pip install aozora-cli`
+
+### Development
 
 1. `git clone https://github.com/aozorahack/aozora-cli`
 1. `cd aozora-cli`
 1. `export PYTHONPATH=.`
 
-### Environment Variable
+### 環境変数
 
-- `AOZORAPI_HOST`: `host` or `host:port` of Aozora Bunko API server (default: `www.aozorahack.net`)
+- `AOZORAPI_HOST`: 青空APIサーバのホスト名:ポート
 
-## Commands
+## コマンド
 
-### `books`
+### books
 
 ```bash
 $ ./bin/aozora books
@@ -49,7 +52,7 @@ Options:
   --help               Show this message and exit.
 ```
 
-### `persons`
+### persons
 
 ```bash
 $ ./bin/aozora persons
@@ -70,7 +73,7 @@ Options:
   --help               Show this message and exit.
 ```
 
-### `content`
+### content
 
 ```bash
 $ ./bin/aozora content --id <book_id>
