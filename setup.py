@@ -6,7 +6,7 @@ import os
 
 setup(
     name='aozora-cli',
-    version='0.0.3',
+    version='0.0.4',
     description='Aozora Bunko Command Line Tool',
     author='Yasuhiro Kiyota',
     author_email='yasuhiroki.duck@gmail.com',
