@@ -68,6 +68,24 @@ def content(id, format, output):
     # contentは、Jsonレスポンスではないので、とりあえずそのまま出力
     _print_utf8(res.encode("UTF-8"))
 
+@cli.command(help='show access ranking')
+@click.option('--type', required=True, default='xhtml', type=click.Choice(['txt', 'xhtml']))
+@click.option('--year', required=True, type=int)
+@click.option('--month', required=True, type=int)
+@click.option('--query', required=False, type=str)
+@click.option('--output', required=False, default='json', type=click.Choice(['json', 'txt']))
+def ranking(type, year, month, query, output):
+    import aozoracli.ranking
+    res = aozoracli.ranking.main({
+            'type': type,
+            'year': str(year),
+            'month': '%02d' % month,
+    })
+    if query != None:
+        res = jmespath.search(query, res)
+
+    _print(res, output)
+
 def _print(res, output_format):
     if res == False:
         return
