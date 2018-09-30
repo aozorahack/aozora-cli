@@ -91,3 +91,24 @@ Options:
   --help               Show this message and exit.
 ```
 
+### `ranking`
+
+```bash
+$ ./bin/aozora ranking --type [txt|xhtml] --year 2018 --month 8
+```
+#### Options
+
+```bash
+$ ./bin/aozora ranking --help
+Usage: aozora ranking [OPTIONS]
+
+  show access ranking
+
+Options:
+  --type [txt|xhtml]   [required] default=xhtml
+  --year INTEGER       [required]
+  --month INTEGER      [required]
+  --query TEXT
+  --output [json|txt]
+  --help               Show this message and exit.
+```
