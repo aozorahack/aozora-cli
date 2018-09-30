@@ -20,6 +20,11 @@ def get_content(id, payload=None):
     url += '/content'
     return requests.get(url, params=payload, allow_redirects=True)
 
+def get_ranking(type, year, month):
+    url = _create_api_url("ranking")
+    url += '/' + type + '/' + year + '/' + month
+    return requests.get(url, allow_redirects=True)
+
 def _create_api_url(path, id=None):
     url = AOZORAPI_URL + "/" + path
     if id != None:
