@@ -4,8 +4,9 @@
 import click
 import jmespath
 
-from signal import signal, SIGPIPE, SIG_DFL
-signal(SIGPIPE,SIG_DFL)
+import signal
+if hasattr(signal, "SIGPIPE"):
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
 @click.group(invoke_without_command=True)
 @click.pass_context
